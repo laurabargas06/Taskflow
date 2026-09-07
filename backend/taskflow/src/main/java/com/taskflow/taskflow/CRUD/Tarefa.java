@@ -1,3 +1,4 @@
+package com.taskflow.taskflow.CRUD;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,14 +10,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-enum statusTarefa {
-    PENDENTE,
-    EM_ANDAMENTO,
-    CONCLUIDA
-}
+
 @Entity // define que essa classe é uma entidade do BD
 @Table(name = "tarefa")
 public class Tarefa {
+       public enum statusTarefa {
+         PENDENTE,
+         EM_ANDAMENTO,
+         CONCLUIDA
+       }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +42,7 @@ public class Tarefa {
     @Column (name = "status", nullable = false)
     private statusTarefa status;
 
-    public statusTarefa getStatus() {
+    public statusTarefa getStatusTarefa() {
          return status;
     }
 
