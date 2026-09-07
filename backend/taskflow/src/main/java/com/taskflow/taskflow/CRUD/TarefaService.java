@@ -25,15 +25,26 @@ public class TarefaService {
         return tarefaRepository.save(tarefa);
     }
 
-    public Tarefa atualizarTarefa(Tarefa tarefa, Long idUsuario, Long idProjeto) {
-        Usuario usuario = usuarioRepository.findById(idUsuario).get();
-        Projeto projeto = projetoRepository.findById(idProjeto).get();
+    public Tarefa atualizarTarefa(Long id, Tarefa tarefaAtualizada, Long idUsuario, Long idProjeto) {
+    // 1. Busca a tarefa existente pelo ID passado na URL
+    Tarefa tarefaExistente = tarefaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com o id: " + id));
 
-        tarefa.setUsuario(usuario);
-        tarefa.setProjeto(projeto);
+    // 2. Busca o usuário e o projeto
+    Usuario usuario = usuarioRepository.findById(idUsuario)
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    Projeto projeto = projetoRepository.findById(idProjeto)
+            .orElseThrow(() -> new RuntimeException("Projeto não encontrado"));
 
-        return tarefaRepository.save(tarefa);
-    }
+    // 3. Atualiza os dados
+    tarefaExistente.setNomeTarefa(tarefaAtualizada.getNomeTarefa());
+    tarefaExistente.setDescricao(tarefaAtualizada.getDescricao());
+    tarefaExistente.setStatus(tarefaAtualizada.getStatusTarefa());
+    tarefaExistente.setUsuario(usuario);
+    tarefaExistente.setProjeto(projeto);
+
+    return tarefaRepository.save(tarefaExistente);
+}
 
     public Tarefa buscarTarefa(Long id){
         return tarefaRepository.findById(id).get();
@@ -48,10 +59,10 @@ public class TarefaService {
     }
 
     public Iterable<Tarefa> buscarTarefasPorUsuario(Long idUsuario) {
-        return tarefaRepository.findByUsuarioId(idUsuario);
+        return tarefaRepository.findByUsuarioIdusuario(idUsuario);
     }
 
     public void deletarTarefasPorUsuario(Long idUsuario) {
-        tarefaRepository.deleteByUsuarioId(idUsuario);
+        tarefaRepository.deleteByUsuarioIdusuario(idUsuario);
     }
 }

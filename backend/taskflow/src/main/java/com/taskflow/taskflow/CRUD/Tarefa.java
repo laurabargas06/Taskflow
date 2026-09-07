@@ -24,7 +24,7 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idtarefa;
 
-    @Column(name = "nomeprojeto", nullable = false) // Mapeia para a coluna 'nomeTarefa'
+    @Column(name = "nometarefa", nullable = false) // Mapeia para a coluna 'nomeTarefa'
     private String nometarefa;
 
     @Column(name = "descricao", nullable = false)

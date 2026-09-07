@@ -39,5 +39,16 @@ public class Usuario {
     public String getSenha() {
         return senha;
     }
-    
+    public void setIdUsuario(Long idusuario) {
+        this.idusuario = idusuario;
+    }
+    public void setNomeUsuario(String nomeusuario) {
+        this.nomeusuario = nomeusuario;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 }

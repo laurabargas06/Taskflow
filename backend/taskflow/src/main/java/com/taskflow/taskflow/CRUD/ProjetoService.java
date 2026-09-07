@@ -2,7 +2,7 @@ package com.taskflow.taskflow.CRUD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+@Service
 public class ProjetoService {
     @Autowired
     private ProjetoRepository projetorepository;
@@ -35,10 +35,10 @@ public class ProjetoService {
         projetorepository.deleteById(id);
     }
     public Iterable<Projeto> buscarProjetosPorUsuario(Long idUsuario) {
-        return projetorepository.findByUsuarioId(idUsuario);
+        return projetorepository.findByUsuarioIdusuario(idUsuario);
     }
     public void deletarProjetosPorUsuario(Long idUsuario) {
-        projetorepository.deleteByUsuarioId(idUsuario);
+        projetorepository.deleteByUsuarioIdusuario(idUsuario);
     }
 
 
